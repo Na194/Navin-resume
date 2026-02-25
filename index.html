@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Navin Rajan — Global Talent Acquisition</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --cream: #f7f4ef;
+    --cream2: #eeead f;
+    --ink: #1a1814;
+    --ink2: #3d3a35;
+    --muted: #8a8278;
+    --accent: #c0392b;
+    --accent-light: #f9eeec;
+    --gold: #b8922a;
+    --border: #e0dbd2;
+    --white: #ffffff;
+    --tag-bg: #ede9e2;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── LAYOUT ── */
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 64px 0 48px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: end;
+    border-bottom: 1px solid var(--border);
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .hero-left {}
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(44px, 7vw, 72px);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 12px;
+  }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    padding-bottom: 4px;
+  }
+
+  .resume-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .resume-btn:hover {
+    background: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .resume-btn svg { width: 14px; height: 14px; }
+
+  /* ── SECTION ── */
+  section {
+    padding: 48px 0;
+    border-bottom: 1px solid var(--border);
+    animation: fadeUp 0.6s ease both;
+  }
+
+  section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── SUMMARY ── */
+  .summary-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.5vw, 22px);
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--ink2);
+    max-width: 780px;
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .skill-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    padding: 6px 14px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--ink2);
+    transition: all 0.15s;
+  }
+
+  .skill-tag:hover {
+    background: var(--accent-light);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* ── EXPERIENCE ── */
+  .exp-list { display: flex; flex-direction: column; gap: 40px; }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .exp-logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    background: var(--white);
+    flex-shrink: 0;
+  }
+
+  .exp-logo-placeholder {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  .exp-body {}
+
+  .exp-company {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 2px;
+  }
+
+  .exp-role {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink2);
+    margin-bottom: 2px;
+  }
+
+  .exp-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .exp-meta span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .exp-bullets li {
+    font-size: 13.5px;
+    color: var(--ink2);
+    line-height: 1.65;
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 11px;
+    top: 2px;
+  }
+
+  .exp-bullets li strong { font-weight: 600; color: var(--ink); }
+
+  .exp-tools {
+    margin-top: 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.6;
+    padding: 10px 14px;
+    background: var(--tag-bg);
+    border-radius: 4px;
+    border-left: 2px solid var(--gold);
+  }
+
+  .exp-tools strong { color: var(--gold); }
+
+  .exp-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 32px 0;
+    border: none;
+  }
+
+  /* Sub role within same company */
+  .sub-role {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px dashed var(--border);
+  }
+
+  .sub-role-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink2);
+    margin-bottom: 2px;
+  }
+
+  /* ── ACCOMPLISHMENTS ── */
+  .acc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .acc-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px 22px;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .acc-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--gold);
+  }
+
+  .acc-company {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .acc-text {
+    font-size: 13.5px;
+    color: var(--ink2);
+    line-height: 1.6;
+  }
+
+  .acc-text::before {
+    content: '🏆 ';
+  }
+
+  /* ── EDUCATION ── */
+  .edu-card {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 24px 28px;
+    max-width: 480px;
+  }
+
+  .edu-icon {
+    font-size: 36px;
+    flex-shrink: 0;
+  }
+
+  .edu-body {}
+
+  .edu-school {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .edu-degree {
+    font-size: 13.5px;
+    color: var(--ink2);
+    margin-bottom: 4px;
+  }
+
+  .edu-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 32px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    border-top: 1px solid var(--border);
+    margin-top: 0;
+  }
+
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  .footer-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--border);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  section:nth-child(1) { animation-delay: 0.05s; }
+  section:nth-child(2) { animation-delay: 0.1s; }
+  section:nth-child(3) { animation-delay: 0.15s; }
+  section:nth-child(4) { animation-delay: 0.2s; }
+  section:nth-child(5) { animation-delay: 0.25s; }
+  section:nth-child(6) { animation-delay: 0.3s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .hero { grid-template-columns: 1fr; gap: 20px; }
+    .hero-right { align-items: flex-start; }
+    .exp-item { grid-template-columns: 1fr; }
+    .exp-logo, .exp-logo-placeholder { display: none; }
+    h1 { font-size: 40px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Global Talent Acquisition</div>
+      <h1>Navin<br><em>Rajan</em></h1>
+      <div class="hero-title">TA Specialist · HR Operations · APAC · EMEA · North America</div>
+    </div>
+    <div class="hero-right">
+      <a class="resume-btn" href="https://drive.google.com/file/d/1V1YYya-woBVs7Q3Rh8xqN6Vepe8Nt7ZO/view?usp=sharing" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Resume
+      </a>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <section>
+    <div class="section-label">Professional Summary</div>
+    <p class="summary-text">
+      As a Global Talent Acquisition specialist, I specialize in identifying and hiring top talent across North America, Canada, EMEA, and APAC regions. Experienced in HR Operations Shared Services and recruiting for entry-level to leadership roles. I deliver data-driven sourcing strategies, market intelligence, and talent insights that align with business goals — thriving in global, cross-functional teams across time zones.
+    </p>
+  </section>
+
+  <!-- SKILLS -->
+  <section>
+    <div class="section-label">Core Skills</div>
+    <div class="skills-grid">
+      <span class="skill-tag">Python Scripting</span>
+      <span class="skill-tag">Gen AI & Prompt Engineering</span>
+      <span class="skill-tag">Executive & Leadership Recruitment</span>
+      <span class="skill-tag">Market Intelligence & Competitor Analysis</span>
+      <span class="skill-tag">Recruitment Analytics & Reporting</span>
+      <span class="skill-tag">Data-Driven Sourcing Strategy</span>
+      <span class="skill-tag">No-Code, AI & Workflow Automation</span>
+      <span class="skill-tag">Team Leadership & Collaboration</span>
+      <span class="skill-tag">Boolean & Dork Search Techniques</span>
+      <span class="skill-tag">Candidate Outreach & Engagement</span>
+      <span class="skill-tag">Global Talent Sourcing & Screening</span>
+      <span class="skill-tag">Diversity Recruiting & Veteran Hiring</span>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section>
+    <div class="section-label">Experience</div>
+    <div class="exp-list">
+
+      <!-- Netgear -->
+      <div class="exp-item">
+        <img class="exp-logo" src="https://framerusercontent.com/images/iMEVwU3GOK5vLEqCj5U6a4Lc4xM.png" alt="Netgear" onerror="this.style.display='none'"/>
+        <div class="exp-body">
+          <div class="exp-company">Netgear</div>
+          <div class="exp-role">Global Talent Acquisition & HR Operation Specialist</div>
+          <div class="exp-meta">
+            <span>📅 Sep 2025 – Mar 2026</span>
+            <span>📍 Chennai · Hybrid</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Managed full-cycle recruitment — sourcing, screening, scheduling, interviewing, and onboarding.</li>
+            <li>Built and maintained strong relationships with hiring managers to understand their needs and deliver exceptional talent.</li>
+            <li>Ensured a seamless candidate experience through clear communication and timely updates throughout the hiring process.</li>
+            <li>Responsible for providing market, business & competitor intel along with employer branding initiatives.</li>
+            <li>Streamlined India onboarding operations through process improvements from offer acceptance to candidate joining.</li>
+          </ul>
+          <div class="exp-tools"><strong>Tools:</strong> Ashby, LinkedIn Recruiter</div>
+        </div>
+      </div>
+
+      <!-- Indeed -->
+      <div class="exp-item">
+        <img class="exp-logo" src="https://framerusercontent.com/images/21dWrMlJTZwz1SmEI9862KnQ3kk.jpeg" alt="Indeed" onerror="this.style.display='none'"/>
+        <div class="exp-body">
+          <div class="exp-company">Indeed</div>
+          <div class="exp-role">Global Talent Acquisition Specialist</div>
+          <div class="exp-meta">
+            <span>📅 Feb 2025 – Jun 2025</span>
+            <span>📍 Bangalore · Remote</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Sourced top talent across Product, Software Development (AI/ML), Sales, Account Management, Customer Success, and Support roles spanning EMEA and APAC.</li>
+            <li>Built diverse talent pipelines via job boards, social media, professional organizations, and industry events — improving candidate diversity by <strong>50%</strong>.</li>
+            <li>Designed and executed sourcing strategies targeting passive and active candidates, improving engagement and response rates by <strong>~15–20%</strong>.</li>
+            <li>Enhanced employer branding by crafting targeted job descriptions and culture-focused content, increasing application quality by <strong>25%</strong>.</li>
+            <li>Collaborated on a talent mapping report featuring market insights, candidate personas, and career path analysis across functions and regions.</li>
+            <li>Optimized sourcing workflows using LinkedIn Recruiter, Indeed Smart Sourcing, and Custom Search Engines — reducing sourcing cycle time by <strong>50%</strong>.</li>
+            <li>Executed <strong>100+ candidate outreach efforts per week</strong> for tech and non-tech roles, placing hires across domestic and international markets.</li>
+            <li>Captured key Sales roles — Client Success and NAM — across India, Ireland, and Belgium.</li>
+          </ul>
+          <div class="exp-tools"><strong>Tools:</strong> Google Ecosystem, Workday, Asana, iCIMS, Indeed Sourcing Platform, LinkedIn Recruiter, Perplexity, Slack</div>
+        </div>
+      </div>
+
+      <!-- Huron -->
+      <div class="exp-item">
+        <img class="exp-logo" src="https://framerusercontent.com/images/1JDKn1cpfPBjjcD9IzFlwUIyJ7Y.jpg" alt="Huron Consulting" onerror="this.style.display='none'"/>
+        <div class="exp-body">
+          <div class="exp-company">Huron Consulting Group</div>
+          <div class="exp-role">Senior HR Operations Analyst</div>
+          <div class="exp-meta">
+            <span>📅 Aug 2024 – Dec 2024</span>
+            <span>📍 Chennai · Hybrid</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Developed and maintained comprehensive trackers and reports for the India TA team, streamlining hiring operations and optimizing visibility.</li>
+            <li>Managed Workday, ServiceNow, and Sterling systems — handling offer letters, change requests, and ticketing for smooth onboarding.</li>
+            <li>Partnered with the Onboarding team to deliver seamless new-hire experiences across all process touchpoints.</li>
+            <li>Automated onboarding workflows including background checks, pre-boarding reports, and documentation — reducing administrative effort and improving candidate experience by <strong>50%</strong>.</li>
+          </ul>
+          <div class="exp-tools"><strong>Tools:</strong> Workday, ServiceNow, Sterling, Ongrid, Microsoft Power Automate, OneDrive, Spreadsheets</div>
+
+          <div class="sub-role">
+            <div class="sub-role-title">Talent Acquisition Sourcing Associate — Office of US</div>
+            <div class="exp-meta">
+              <span>📅 Jan 2023 – Jul 2024</span>
+              <span>📍 Chicago, US · Remote</span>
+            </div>
+            <ul class="exp-bullets">
+              <li>Implemented data-driven sourcing strategies using advanced Boolean logic, AI tools, and programmable search engines — increasing senior technical role hires by <strong>25%</strong>.</li>
+              <li>Collaborated with hiring managers across Digital (Workday, Oracle, Salesforce), Healthcare, Higher Education, Business Advisory, and Financial sectors.</li>
+              <li>Led diversity recruiting initiatives engaging underrepresented talent pools — bolstering pipeline diversity to <strong>30% diverse hires</strong>.</li>
+              <li>Managed multiple requisitions across the US, India, Singapore, and Canada for mid-level to leadership roles.</li>
+              <li>Facilitated global sourcing webinars for US and India teams, promoting shared best practices.</li>
+            </ul>
+
+            <div class="sub-role" style="margin-top:20px; padding-top:20px;">
+              <div class="sub-role-title">Senior Talent Acquisition Sourcing Analyst — Office of US</div>
+              <div class="exp-meta">
+                <span>📅 Jan 2022 – Dec 2022</span>
+                <span>📍 Chicago, US · Remote</span>
+              </div>
+              <ul class="exp-bullets">
+                <li>Supported sourcing for Digital, Healthcare, Finance, Research & Higher Education for North America.</li>
+                <li>Crafted and posted customized job descriptions to attract higher-quality applicants — increasing qualified applicant rate by <strong>10%</strong>.</li>
+                <li>Contributed to diversity hiring programs — diverse hires grew by <strong>15%</strong>.</li>
+                <li>Partnered with recruiters on candidate screening and engagement to improve time-to-fill and quality-of-hire by <strong>50%</strong>.</li>
+                <li>Devised creative sourcing strategies to sustain a diverse candidate pipeline; participated in leadership discussions on recruiting strategy, market insights, and competitor analysis.</li>
+              </ul>
+              <div class="exp-tools"><strong>Tools:</strong> Workday, Avature, PowerBI, Programmable Search Engines, LinkedIn Recruiter, Seekout, HireEZ, Ziprecruiter, Calendly, Zoom, Microsoft Ecosystem</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Revature -->
+      <div class="exp-item">
+        <div class="exp-logo-placeholder">R</div>
+        <div class="exp-body">
+          <div class="exp-company">Revature</div>
+          <div class="exp-role">Senior Talent Sourcing Specialist</div>
+          <div class="exp-meta">
+            <span>📅 Apr 2020 – Aug 2021</span>
+            <span>📍 Chennai</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Delivered <strong>200+ placements</strong> for Fortune 500 clients across Software Developers (Java, .NET, Python, Full Stack), IT Consultants, Tech Support, Business Analysts, and Cybersecurity Experts.</li>
+            <li>Directed and mentored a team of sourcers — cutting time-to-hire by <strong>50%</strong> through coaching and process enhancements.</li>
+            <li>Built diverse talent pipelines via strategic partnerships with US universities, professors, and student bodies.</li>
+            <li>Monitored sourcing KPIs and implemented improvements — increasing qualified submissions by <strong>45%</strong>.</li>
+          </ul>
+
+          <div class="sub-role">
+            <div class="sub-role-title">Talent Sourcing Associate</div>
+            <div class="exp-meta">
+              <span>📅 May 2016 – Mar 2020</span>
+              <span>📍 Chennai</span>
+            </div>
+            <ul class="exp-bullets">
+              <li>Led sourcing for entry-level tech graduates for North America using resume books, LinkedIn, advanced Google search, and job portals.</li>
+              <li>Established connections with US university career services and student networks to build diverse talent pipelines for Fortune 500 tech positions.</li>
+              <li>Crafted and posted targeted job descriptions on US-focused platforms — increasing qualified candidate volume by <strong>75%</strong>.</li>
+              <li>Supported Veteran Hiring initiatives in line with North America regulations, contributing to inclusive hiring practices.</li>
+            </ul>
+            <div class="exp-tools"><strong>Tools:</strong> Monster, Dice, CareerBuilder, LinkedIn, Salesforce, Marketo, Handshake, Symplicity, ZoomInfo, Resume Books, Spreadsheets</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ACCOMPLISHMENTS -->
+  <section>
+    <div class="section-label">Accomplishments</div>
+    <div class="acc-grid">
+      <div class="acc-card">
+        <div class="acc-company">Revature · 2016</div>
+        <div class="acc-text">Awarded Best Performer of the Year 2016</div>
+      </div>
+      <div class="acc-card">
+        <div class="acc-company">Revature · 2016–2021</div>
+        <div class="acc-text">Placed 400+ candidates throughout tenure</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section>
+    <div class="section-label">Education</div>
+    <div class="edu-card">
+      <div class="edu-icon">🎓</div>
+      <div class="edu-body">
+        <div class="edu-school">The New College</div>
+        <div class="edu-degree">Bachelor of Computer Science</div>
+        <div class="edu-meta">2012 – 2015 · Chennai</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<div class="page">
+  <footer>
+    <div class="footer-name">Navin Rajan · Global TA Specialist</div>
+    <div class="footer-note">navinrajan.framer.website</div>
+  </footer>
+</div>
+
+</body>
+</html>
